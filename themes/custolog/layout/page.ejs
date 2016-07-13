@@ -1,0 +1,118 @@
+---
+layout: layout
+---
+<!-- Page Header -->
+<header class="intro-header" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('<%= config.root %><%= page["header-img"] || config["header-img"] %>')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div class="site-heading">
+                    <h1><%= page.title || config.title %></h1>
+                    <!--<hr class="small">-->
+                    <span class="subheading"><%= page.description || config.subtitle || "" %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <% if(config.sidebar == false) { %>
+<!-- NO SIDEBAR -->
+    <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
+                <%- page.content || body %>
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                <% if(config['featured-tags']) { %>
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        <% site.tags.map(function(tag){  %>
+                            <% if(tag.length > config['featured-condition-size']) { %>
+                            <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>" rel="<%= tag.length %>"><%= tag.name %></a>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </section>
+                <% }%>
+
+
+                <!-- Friends Blog -->
+                <% if(config.friends) { %>
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    <% config.friends.forEach(function(friend){ %>
+                        <li><a href="<%= friend.href %>"><%= friend.title %></a></li>
+                    <% }); %>
+                </ul>
+                <% }%>
+            </div>
+        <%} else{ %>
+
+<!-- USE SIDEBAR -->
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
+
+                <%- page.content || body %>
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                <% if(config['featured-tags']) { %>
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        <% site.tags.map(function(tag){  %>
+                            <% if(tag.length > config['featured-condition-size']) { %>
+                            <a href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>" rel="<%= tag.length %>"><%= tag.name %></a>
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </section>
+                <% }%>
+
+                <!-- Short About -->
+                <%- partial('_partial/shortbio') %>
+
+                <!-- Friends Blog -->
+                <% if(config.friends) { %>
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    <% config.friends.forEach(function(friend){ %>
+                        <li><a href="<%= friend.href %>" target="_blank"><%= friend.title %></a></li>
+                    <% }); %>
+                </ul>
+                <% }%>
+            </div>
+        <%} %>
+    </div>
+</div>
