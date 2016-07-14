@@ -280,13 +280,17 @@
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "brunoventura";
-    var disqus_identifier = "brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript/";
-    var disqus_url = "brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript/";
-    var disqus_developer = 1;
+    var disqus_config = function () {
+        this.page.url = "brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript/";
+        this.page.identifier = "brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript/";
+        this.page.title = "Emulador CHIP-8 em JavaScript | Parte 1";
+    };
 
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.setAttribute('data-timestamp', +new Date());
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
