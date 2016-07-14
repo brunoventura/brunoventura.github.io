@@ -13,11 +13,11 @@
 
     <title>
         
-          Welcome to Hux Blog - Bruno Ventura Blog
+          Emulador CHIP-8 em JavaScript do zero | Parte 1 - Bruno Ventura Blog
         
     </title>
 
-    <link rel="canonical" href="brunoventura.github.io/2015/01/29/hello-2015/">
+    <link rel="canonical" href="brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript-do-zero/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -137,7 +137,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('post-bg-2015.jpg')
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('maxresdefault.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -147,14 +147,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#生活" title="生活">生活</a>
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
+                          <a class="tag" href="/tags/#js" title="js">js</a>
+                        
+                          <a class="tag" href="/tags/#Emulador" title="Emulador">Emulador</a>
+                        
+                          <a class="tag" href="/tags/#CHIP-8" title="CHIP-8">CHIP-8</a>
                         
                     </div>
-                    <h1>Welcome to Hux Blog</h1>
-                    <h2 class="subheading"> &quot;Hello World, Hello Blog&quot;</h2>
+                    <h1>Emulador CHIP-8 em JavaScript do zero | Parte 1</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
-                        Posted by <a href="/about/">Hux</a> on
-                        2015-01-29
+                        Posted by <a href="/about/">Bruno Ventura</a> on
+                        2016-07-13
                     </span>
                 </div>
             </div>
@@ -169,55 +175,45 @@
 
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
                 post-container">
 
-
-                <blockquote>
-<p>“Yeah It’s on. ”</p>
+                <h2 id="Introducao"><a href="#Introducao" class="headerlink" title="Introdução"></a>Introdução</h2><p><strong><a href="#O-que-e-um-emulador">TL;DR Pular para a parte interessante</a></strong></p>
+<p>Desde que tive meu primeiro computador (um 486) um dos meus maiores entretenimentos foi a capacidade de poder baixar e instalar emuladores e jogos para os mesmos. Era um universo muito amplo, ter acesso a qualquer jogo de plataforma (apenas a uma internet discada de distância rsrs), algo que pelo menos para minha realidade era algo intangivel com os poucos consoles físicos que tive.</p>
+<p>O tempo passou e eventualmente ingressei no mundo da tecnologia como desenvolvedor de softwares, porém com esse advento a curiosidade sobre os emuladores aumentou, e uma curiosidade muito grande começou a surgir dentro de mim.</p>
+<blockquote>
+<p>Como diabos um emulador funciona…</p>
 </blockquote>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Hux 的 Blog 就这么开通了。</p>
-<p><a href="#build">跳过废话，直接看技术实现 </a></p>
-<p>2015 年，Hux 总算有个地方可以好好写点东西了。</p>
-<p>作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。</p>
-<p>在玩了一段时间知乎之后，答题的快感又激起了我开博客的冲动。之前的<a href="http://huangxuan.me/portfolio" target="_blank" rel="external">个人网站</a>是作品集形式的（现在集成进来了），并不适合用来写博文，一不做二不休，花一天搞一个吧！</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><p id="build"></p></h2><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>接下来说说搭建这个博客的技术细节。  </p>
-<p>正好之前就有关注过 <a href="https://pages.github.com/" target="_blank" rel="external">GitHub Pages</a> + <a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll</a> 快速 Building Blog 的技术方案，非常轻松时尚。</p>
-<p>其优点非常明显：</p>
-<ul>
-<li><strong>Markdown</strong> 带来的优雅写作体验</li>
-<li>非常熟悉的 Git workflow ，<strong>Git Commit 即 Blog Post</strong></li>
-<li>利用 GitHub Pages 的域名和免费无限空间，不用自己折腾主机<ul>
-<li>如果需要自定义域名，也只需要简单改改 DNS 加个 CNAME 就好了</li>
-</ul>
-</li>
-<li>Jekyll 的自定制非常容易，基本就是个模版引擎</li>
-</ul>
-<p>本来觉得最大的缺点可能是 GitHub 在国内访问起来太慢，所以第二天一起床就到 GitCafe(Chinese GitHub Copy) 迁移了一个<a href="http://huxpro.gitcafe.io" target="_blank" rel="external">镜像</a>出来，结果还是巨慢。</p>
-<p>哥哥可是个前端好嘛！ 果断开 Chrome DevTool 查了下网络请求，原来是 <strong>pending 在了 Google Fonts</strong> 上，页面渲染一直被阻塞到请求超时为止，难怪这么慢。<br>忍痛割爱，只好把 Web Fonts 去了（反正超时看到的也只能是 fallback ），果然一下就正常了，而且 GitHub 和 GitCafe 对比并没有感受到明显的速度差异，虽然 github 的 ping 值明显要高一些，达到了 300ms，于是用 DNSPOD 优化了一下速度。</p>
-<hr>
-<p>配置的过程中也没遇到什么坑，基本就是 Git 的流程，相当顺手</p>
-<p>大的 Jekyll 主题上直接 fork 了 Clean Blog（这个主题也相当有名，就不多赘述了。唯一的缺点大概就是没有标签支持，于是我给它补上了。）</p>
-<p>本地调试环境需要 <code>gem install jekyll</code>，结果 rubygem 的源居然被墙了……后来手动改成了我大淘宝的镜像源才成功</p>
-<p>Theme 的 CSS 是基于 Bootstrap 定制的，看得不爽的地方直接在 Less 里改就好了（平时更习惯 SCSS 些），<strong>不过其实我一直觉得 Bootstrap 在移动端的体验做得相当一般，比我在淘宝参与的团队 CSS 框架差多了……</strong>所以为了体验，也补了不少 CSS 进去</p>
-<p>最后就进入了耗时反而最长的<strong>做图、写字</strong>阶段，也算是进入了<strong>写博客</strong>的正轨，因为是类似 Hack Day 的方式去搭这个站的，所以折腾折腾着大半夜就过去了。</p>
-<p>第二天考虑中文字体的渲染，fork 了 <a href="http://www.typeisbeautiful.com/" target="_blank" rel="external">Type is Beautiful</a> 的 <code>font</code> CSS，调整了字号，适配了 Win 的渣渲染，中英文混排效果好多了。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>回顾这个博客的诞生，纯粹是出于个人兴趣。在知乎相关问题上回答并获得一定的 star 后，我决定把这个博客主题当作一个小小的开源项目来维护。</p>
-<p>在经历 v1.0 - v1.5 的蜕变后，这个博客主题愈发完整，不但增加了诸多 UI 层的优化（opinionated）；在代码层面，更加丰富的配置项也使得这个主题拥有了更好的灵活性与可拓展性。而作为一个开源项目，我也积极的为其完善文档与解决 issue。</p>
-<p>如果你恰好逛到了这里，希望你也能喜欢这个博客主题。</p>
-<p>—— Hux 后记于 2015.10</p>
-
+<p>Curso sistemas de informação, e tive uma matéria de arquitetura de computadores, logo eu tinha entendido (muito pouco) como era o funcionamento de um computador, mas mesmo assim, era dificil compreender o que de fato consistia em um emulador. Nesse momento eu já havia trabalhado programando 2 anos em Java e estava começando a trabalhar com Javascript e Node.js, sabia que existiam emuladores no que rodavam no browser e estava <em><a href="https://media.giphy.com/media/TlK63EWmJDBa5MjIr6g/giphy.gif" target="_blank" rel="external">mind blown</a></em> com pequenas possibilidades como criar um servidor REST em 10 linhas de código e que javascript ia muito além do JQuery, pensei:</p>
+<blockquote>
+<p>Já que roda no browser e é em JavaScript não deve ser dificil entender, tá pra mim! Vou começar por um fácil, NES…</p>
+</blockquote>
+<p>Doce ilusão… lembro de ter acessado um repositório do Github (não tenho mais certeza de exatamente qual, mas acredito que seja esse: <a href="https://github.com/fcambus/jsemu" target="_blank" rel="external">jsnes</a>) e foi como se tivesse levado uma paulada na cabeça</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// Find address mode:</span></div><div class="line"><span class="keyword">var</span> addrMode = (opinf &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>;</div><div class="line"></div><div class="line"><span class="comment">// Increment PC by number of op bytes:</span></div><div class="line"><span class="keyword">var</span> opaddr = <span class="keyword">this</span>.REG_PC;</div><div class="line"><span class="keyword">this</span>.REG_PC += ((opinf &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>);</div></pre></td></tr></table></figure>
+<p>Eu conhecia os operadores Bitwise (que até então eram conhecidos só como operadores lógicos) AND, OR, XOR, NOT que são os básicos que se aprende na faculdade, porém nunca são utilizados no mundo real das pessoas que amam a família. Porém &gt;&gt;, &gt;&gt;&gt;, &lt;&lt; fora o fato que o uso de usar hexadecimal só fazia me parecer ainda mais complexo o código. Obviamente como toda pessoa com muita motivação faria, eu larguei tudo de lado e achei que nunca mais olharia pro código de um emulador de novo.</p>
+<p>Até que um dia eu esbarrei com essa pergunta do <a href="http://stackoverflow.com/questions/448673/how-do-emulators-work-and-how-are-they-written" target="_blank" rel="external">stackoverflow</a>:</p>
+<p><img src="stackoverflow.jpg" alt="alt text"></p>
+<p>Nas respostas é possivel ter um amplo panorâma sobre o que de fato é a programação de um emulador, com vários links de <a href="#summary">referência</a> muito interessantes. Nesse ponto, estava bem claro para mim que apesar de eu ter algum conhecimento em javascript, havia um déficit em como realmente um computador funciona, seja ele emulado ou não. Vendo isso percebi que seria uma ótima forma de ter vários ganhos:</p>
+<ol>
+<li>Eu aprenderia low-level e arquitetura de computadores na prática</li>
+<li>Eu estaria mechendo com emuladores</li>
+<li>Consolidaria conhecimentos em JavaScript</li>
+</ol>
+<h2 id="Para-quem-e-essa-serie"><a href="#Para-quem-e-essa-serie" class="headerlink" title="Para quem é essa série"></a>Para quem é essa série</h2><p>Para acompanhar a série é importante um background mesmo que básico em programação, durante todo o processo usaremos JavaScript, porém tirando a parte de renderização todo o resto é facilmente portado para qualquer linguagem, conceitos como operações bitwise serão explicadas no decorrer do tutorial. Não é necessário ter conhecimento em emuladores ou em baixo nível (como assembly), alguns conceitos serão explicados durante o tutorial, e alguns serão linkados para outros artigos. E principalmente ter curiosidade para tirar dúvidas e ir atrás de outras fontes de informação.</p>
+<h2 id="O-que-e-um-emulador"><a href="#O-que-e-um-emulador" class="headerlink" title="O que é um emulador"></a>O que é um emulador</h2><p>Segundo a definição do <a href="https://en.wikipedia.org/wiki/Emulator" target="_blank" rel="external">Wikipedia</a>:</p>
+<blockquote>
+<p>Em computação, um <strong>emulador</strong> é um hardware ou software que possibilita um sistema computacional (chamado de <em>host</em>) se comportar como outro sistema computacional (chamado de <em>guest</em>).</p>
+</blockquote>
+<h3 id="Continua…"><a href="#Continua…" class="headerlink" title="Continua…"></a>Continua…</h3>
 
                 <hr>
 
                 
 
                 <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/2015/04/14/unix-linux-note/" data-toggle="tooltip" data-placement="top" title="Example Post With Default Header Image">&larr; Previous Post</a>
-                        </li>
                     
                     
                 </ul>
@@ -284,19 +280,6 @@
         
 
     <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                
-
-                <!-- Friends Blog -->
-                
-            </div>
-
         </div>
     </div>
 </article>
@@ -308,9 +291,9 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_config = function () {
-        this.page.url = document.location.href;
-        this.page.identifier = "brunoventura.github.io/2015/01/29/hello-2015/";
-        this.page.title = "Welcome to Hux Blog";
+        this.page.url = document.location.;
+        this.page.identifier = "brunoventura.github.io/2016/07/13/Emulador-CHIP-8-em-JavaScript-do-zero/";
+        this.page.title = "Emulador CHIP-8 em JavaScript do zero | Parte 1";
     };
 
     (function() {  // DON'T EDIT BELOW THIS LINE
@@ -326,6 +309,40 @@
 
 
 
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
 
 
