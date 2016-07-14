@@ -107,7 +107,7 @@
     var $navbar = document.querySelector('#huxblog_navbar');
     var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
+    $toggle && $toggle.addEventListener('click', handleMagic)
     function handleMagic(e){
         if ($navbar.className.indexOf('in') > 0) {
         // CLOSE
@@ -182,19 +182,19 @@
                 post-container">
 
                 <h2 id="Introducao"><a href="#Introducao" class="headerlink" title="Introdução"></a>Introdução</h2><p><strong><a href="#O-que-e-um-emulador">TL;DR Pular para a parte interessante</a></strong></p>
-<p>Desde que tive meu primeiro computador (um 486) um dos meus maiores entretenimentos foi a capacidade de poder baixar e instalar emuladores e jogos para os mesmos. Era um universo muito amplo, ter acesso a qualquer jogo de plataforma (apenas a uma internet discada de distância rsrs), algo que pelo menos para minha realidade era algo intangivel com os poucos consoles físicos que tive.</p>
-<p>O tempo passou e eventualmente ingressei no mundo da tecnologia como desenvolvedor de softwares, porém com esse advento a curiosidade sobre os emuladores aumentou, e uma curiosidade muito grande começou a surgir dentro de mim.</p>
+<p>Desde que tive meu primeiro computador (um 486) um dos meus maiores entretenimentos foi a capacidade de poder baixar e instalar emuladores e jogos para os mesmos. Era um universo muito amplo, ter acesso a qualquer jogo de qualquer plataforma (apenas a uma internet discada de distância rsrs), algo que pelo menos para minha realidade era algo intangivel com os poucos consoles físicos que tive e o alto custo dos jogos.</p>
+<p>O tempo passou e eventualmente ingressei no mundo da tecnologia como desenvolvedor de softwares, porém com esse advento a curiosidade sobre os emuladores aumentou, e um questionamento começou a me instigar:</p>
 <blockquote>
 <p>Como diabos um emulador funciona…</p>
 </blockquote>
-<p>Curso sistemas de informação, e tive uma matéria de arquitetura de computadores, logo eu tinha entendido (muito pouco) como era o funcionamento de um computador, mas mesmo assim, era dificil compreender o que de fato consistia em um emulador. Nesse momento eu já havia trabalhado programando 2 anos em Java e estava começando a trabalhar com Javascript e Node.js, sabia que existiam emuladores no que rodavam no browser e estava <em><a href="https://media.giphy.com/media/TlK63EWmJDBa5MjIr6g/giphy.gif" target="_blank" rel="external">mind blown</a></em> com pequenas possibilidades como criar um servidor REST em 10 linhas de código e que javascript ia muito além do JQuery, pensei:</p>
+<p>Curso sistemas de informação, e tive uma matéria de arquitetura de computadores, logo, eu tinha entendido (muito pouco) como era o funcionamento de um computador, mas mesmo assim, era dificil compreender o que de fato consistia em um emulador. Nesse momento eu já havia trabalhado programando 2 anos em Java e estava começando a trabalhar com Javascript/Node.js, sabia que existiam emuladores no que rodavam no browser e estava <em><a href="https://media.giphy.com/media/TlK63EWmJDBa5MjIr6g/giphy.gif" target="_blank" rel="external">mind blown</a></em> com pequenas possibilidades como criar um servidor REST em 10 linhas de código e que javascript ia muito além do JQuery, pensei:</p>
 <blockquote>
 <p>Já que roda no browser e é em JavaScript não deve ser dificil entender, tá pra mim! Vou começar por um fácil, NES…</p>
 </blockquote>
 <p>Doce ilusão… lembro de ter acessado um repositório do Github (não tenho mais certeza de exatamente qual, mas acredito que seja esse: <a href="https://github.com/fcambus/jsemu" target="_blank" rel="external">jsnes</a>) e foi como se tivesse levado uma paulada na cabeça</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// Find address mode:</span></div><div class="line"><span class="keyword">var</span> addrMode = (opinf &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>;</div><div class="line"></div><div class="line"><span class="comment">// Increment PC by number of op bytes:</span></div><div class="line"><span class="keyword">var</span> opaddr = <span class="keyword">this</span>.REG_PC;</div><div class="line"><span class="keyword">this</span>.REG_PC += ((opinf &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>);</div></pre></td></tr></table></figure>
-<p>Eu conhecia os operadores Bitwise (que até então eram conhecidos só como operadores lógicos) AND, OR, XOR, NOT que são os básicos que se aprende na faculdade, porém nunca são utilizados no mundo real das pessoas que amam a família. Porém &gt;&gt;, &gt;&gt;&gt;, &lt;&lt; fora o fato que o uso de usar hexadecimal só fazia me parecer ainda mais complexo o código. Obviamente como toda pessoa com muita motivação faria, eu larguei tudo de lado e achei que nunca mais olharia pro código de um emulador de novo.</p>
-<p>Até que um dia eu esbarrei com essa pergunta do <a href="http://stackoverflow.com/questions/448673/how-do-emulators-work-and-how-are-they-written" target="_blank" rel="external">stackoverflow</a>:</p>
+<p>Eu conhecia os operadores Bitwise (que até então eram conhecidos só como operadores lógicos) AND, OR, XOR, NOT que são os básicos que se aprende na faculdade, porém nunca são utilizados no mundo real das pessoas que amam a família. Porém &gt;&gt;, &gt;&gt;&gt;, &lt;&lt; fora o fato que o uso de hexadecimal só fazia parecer ainda mais complexo o código. Obviamente como toda pessoa com muita motivação faria, eu larguei tudo de lado e achei que nunca mais olharia pro código de um emulador de novo.</p>
+<p>Até que um dia algum tempo depois eu esbarrei com essa pergunta do <a href="http://stackoverflow.com/questions/448673/how-do-emulators-work-and-how-are-they-written" target="_blank" rel="external">stackoverflow</a>:</p>
 <p><img src="stackoverflow.jpg" alt="alt text"></p>
 <p>Nas respostas é possivel ter um amplo panorâma sobre o que de fato é a programação de um emulador, com vários links de <a href="#summary">referência</a> muito interessantes. Nesse ponto, estava bem claro para mim que apesar de eu ter algum conhecimento em javascript, havia um déficit em como realmente um computador funciona, seja ele emulado ou não. Vendo isso percebi que seria uma ótima forma de ter vários ganhos:</p>
 <ol>
