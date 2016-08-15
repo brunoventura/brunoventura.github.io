@@ -181,7 +181,8 @@
                 col-xs-12
                 post-container">
 
-                <h2 id="Introducao"><a href="#Introducao" class="headerlink" title="Introdução"></a>Introdução</h2><p><strong><a href="#O-que-e-um-emulador">TL;DR Pular para a parte interessante</a></strong></p>
+                <h2 id="Introducao"><a href="#Introducao" class="headerlink" title="Introdução"></a>Introdução</h2><p>Essa primeira parte tratará principalmente da parte conceitual de um emulador e de arquitetura de computadores.</p>
+<p><strong><a href="#O-que-e-um-emulador">TL;DR Pular para a parte interessante</a></strong></p>
 <p>Desde que tive meu primeiro computador (um 486) um dos meus maiores entretenimentos foi a capacidade de poder baixar e instalar emuladores e jogos para os mesmos. Era um universo muito amplo, ter acesso a qualquer jogo de qualquer plataforma (apenas a uma internet discada de distância rsrs), algo que pelo menos para minha realidade era algo intangivel com os poucos consoles físicos que tive e o alto custo dos jogos.</p>
 <p>O tempo passou e eventualmente ingressei no mundo da tecnologia como desenvolvedor de softwares, juntamente com esse advento a curiosidade sobre os emuladores aumentou, e um questionamento começou a me instigar:</p>
 <blockquote>
@@ -203,10 +204,35 @@
 <li>Consolidaria conhecimentos em JavaScript</li>
 </ol>
 <h2 id="Para-quem-e-essa-serie"><a href="#Para-quem-e-essa-serie" class="headerlink" title="Para quem é essa série"></a>Para quem é essa série</h2><p>Para acompanhar a série é importante um background mesmo que básico em programação, durante todo o processo usaremos JavaScript, porém tirando a parte de renderização todo o resto é facilmente portado para qualquer linguagem, conceitos como operações bitwise serão explicadas no decorrer do tutorial. Não é necessário ter conhecimento em emuladores ou em baixo nível (como assembly), alguns conceitos serão explicados durante o tutorial, e alguns serão linkados para outros artigos. E principalmente ter curiosidade para tirar dúvidas e ir atrás de outras fontes de informação.</p>
-<h2 id="O-que-e-um-emulador"><a href="#O-que-e-um-emulador" class="headerlink" title="O que é um emulador"></a>O que é um emulador</h2><p>Segundo a definição do <a href="https://en.wikipedia.org/wiki/Emulator" target="_blank" rel="external">Wikipedia</a>:</p>
+<h2 id="O-que-e-um-emulador"><a href="#O-que-e-um-emulador" class="headerlink" title="O que é um emulador"></a>O que é um emulador</h2><p>Segundo o dicionário a palavra emulador significa:</p>
+<blockquote>
+<p>Sentimento nobre que nos leva a igualar ou exceder outra pessoa em virtudes e merecimentos.</p>
+</blockquote>
+<p>Segundo a definição do <a href="https://en.wikipedia.org/wiki/Emulator" target="_blank" rel="external">Wikipedia</a> para emuladores computacionáis:</p>
 <blockquote>
 <p>Em computação, um <strong>emulador</strong> é um hardware ou software que possibilita um sistema computacional (chamado de <em>host</em>) se comportar como outro sistema computacional (chamado de <em>guest</em>).</p>
 </blockquote>
+<p>Diz-se que o primeiro emulador criado quando o primeiro computador precisou ser trocado por um novo que fosse compatível com o anterior. Logo, os softwares do computador anterior precisavam ser portados para o novo. Para esse fim existem várias soluções, como recompilar o software para o novo CPU (caso você tenha o source code), reescrever toda a aplicação (nhé…), traduzir todas as syscalls juntamente com binário, ou também criar um emulador da máquina antiga na nova.</p>
+<p>O primeiro emulador conhecido foi da IBM na década de 60. A cena da emulação de jogos inicio apenas na década de 90 quando os computadores pessoais começaram a ficar mais acessiveis e potentes.</p>
+<p>Abaixo segue uma pequena listagem de benefícios e dificuldades que são encontrados na emulação:</p>
+<h4 id="Vantagens"><a href="#Vantagens" class="headerlink" title="Vantagens"></a>Vantagens</h4><ul>
+<li>Melhorar qualidade de imagem e audio (remasterização)</li>
+<li>Podem ser adicionadas features (speed++)</li>
+<li>Save state (feature de destaque)</li>
+<li>Utiliza mesmas mídias do console original</li>
+<li>Facilidade de debug</li>
+<li>Forte cena open-source</li>
+<li>Garante que uma plataforma não seja esquecida!!!</li>
+</ul>
+<h4 id="Dificuldades"><a href="#Dificuldades" class="headerlink" title="Dificuldades"></a>Dificuldades</h4><ul>
+<li>Nem sempre é simples</li>
+<li>Copyright (Processinho)</li>
+<li>Propriedade intelectual (dificuldade de encontrar documentação)</li>
+<li>Demanda um hardware muito mais potente que o emulado</li>
+<li>Burlar alguns sistemas anti pirataria</li>
+<li>Necessidade de engenharia reversa</li>
+</ul>
+<h2 id="Arquitetura-de-computadores"><a href="#Arquitetura-de-computadores" class="headerlink" title="Arquitetura de computadores"></a>Arquitetura de computadores</h2><p>Antes de começar com a mão na massa é importante relembrar (ou conhecer) alguns conceitos sobre como um computador funciona, isso ajudará bastante na hora de visualizar o contexto geral e como se dá o funcionamento do nosso emulador</p>
 <h3 id="Continua…"><a href="#Continua…" class="headerlink" title="Continua…"></a>Continua…</h3>
 
                 <hr>
