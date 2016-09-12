@@ -13,11 +13,11 @@
 
     <title>
         
-          Bruno Ventura Blog
+          Write-up | ASIS2016 Finals | Forensics - Sky Blue - Bruno Ventura Blog
         
     </title>
 
-    <link rel="canonical" href="brunoventura.github.io/">
+    <link rel="canonical" href="brunoventura.github.io/2016/09/12/Writeup-ASIS-Sky-Blue/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -129,98 +129,110 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('/img/mainbg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="brunoventura.github.io/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url('maxresdefault.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Bruno Ventura</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">Fullstack Dev @ Chaordic</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#ASIS" title="ASIS">ASIS</a>
+                        
+                          <a class="tag" href="/tags/#ctf" title="ctf">ctf</a>
+                        
+                          <a class="tag" href="/tags/#writeup" title="writeup">writeup</a>
+                        
+                          <a class="tag" href="/tags/#Forensics" title="Forensics">Forensics</a>
+                        
+                          <a class="tag" href="/tags/#scripting" title="scripting">scripting</a>
+                        
+                          <a class="tag" href="/tags/#nodejs" title="nodejs">nodejs</a>
+                        
+                    </div>
+                    <h1>Write-up | ASIS2016 Finals | Forensics - Sky Blue</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by <a href="/about/">Bruno Ventura</a> on
+                        2016-09-12
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
-
-<!-- USE SIDEBAR -->
     <!-- Post Container -->
             <div class="
                 col-lg-8 col-lg-offset-1
                 col-md-8 col-md-offset-1
                 col-sm-12
                 col-xs-12
-                post-container
-            ">
+                post-container">
 
-                <!-- Main Content -->
-
-
-<div class="post-preview">
-
-    <a href="/2016/09/12/Writeup-ASIS-Sky-Blue/">
-        <h2 class="post-title">
-            Write-up | ASIS2016 Finals | Forensics - Sky Blue
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            DescriçãoWhy is the sky blue?
-SoluçãoExtraindo o arquivo temos um .pcap, que nos dá a entender que é um arquivo de transmissão de rede, meu wireshark estava desatualizado e não consegui abrir o arq......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Bruno Ventura on
-        2016-09-12
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2016/07/13/Emulador-CHIP-8-em-JavaScript-do-zero/">
-        <h2 class="post-title">
-            Emulador CHIP-8 em JavaScript do zero | Parte 1
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            IntroduçãoEssa primeira parte tratará principalmente da parte conceitual de um emulador e de arquitetura de computadores.
-TL;DR Pular para a parte interessante
-Desde que tive meu primeiro computado......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Bruno Ventura on
-        2016-07-13
-    </p>
-
-</div>
-<hr>
+                <h2 id="Descricao"><a href="#Descricao" class="headerlink" title="Descrição"></a>Descrição</h2><p>Why is the <a href="blue.pcap">sky blue</a>?</p>
+<h2 id="Solucao"><a href="#Solucao" class="headerlink" title="Solução"></a>Solução</h2><p>Extraindo o arquivo temos um .pcap, que nos dá a entender que é um arquivo de transmissão de rede, meu wireshark estava desatualizado e não consegui abrir o arquivo nele. Analisando o arquivo com cat ou strings é possível perceber facilmente que se trata de um log ou sniff de comunicação por bluetooth entre dois dispositivos:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">➜  blue strings blue.pcap | head</div><div class="line">OS X Version 10.11.5 (Build 15F34) / Model ID: MacBookPro11,3</div><div class="line">Bluetooth Software Version: 4.4.5f3 17904</div><div class="line">nW`v</div><div class="line">Host Controller:  Broadcom / 0x05AC / 0x8289 / v118 c9121 / Built-In (Yes) / Location ID (0x14330000)</div><div class="line">Support:  Deep Idle (No) / WoBT (Yes) / BTRS (No) / New Idle Policy (Yes) / Idle Time (500 ms)</div><div class="line">nWrz</div><div class="line">CONNECTED: 78:31:C1:2E:76:31 - Handle: 0x0040 - 0x0000 - &quot;iPhomate&quot;</div><div class="line">CONNECTED: CC:44:63:98:24:46 - Handle: 0x0042 - 0x0000 - &quot;NotePad&quot;</div><div class="line">[0xC000] [IOBluetoothHCIRequest][Start] --  OpCode 0x200C (LE Set Scan Enable) from: blued (92)  Synchronous  status: 0x00 (kIOReturnSuccess) state: 2 (BUSY) timeout: 4321</div><div class="line">[IOBluetoothHostController][SendHCIRequestFormatted] -- request was put on wait queue -- mNumberOfCommandsAllowedByHardware is 0, inID = 190, opCode = 0x0c17, requestPtr = 0xffffff802479e000</div></pre></td></tr></table></figure>
+<p>Usando binwalk é possível encontrar um header de png dentro do pcap:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">➜  blue binwalk blue.pcap</div><div class="line"></div><div class="line">DECIMAL   	HEX       	DESCRIPTION</div><div class="line">-------------------------------------------------------------------------------------------------------</div><div class="line">40535     	0x9E57    	PNG image, 1400 x 74, 8-bit colormap, non-interlaced</div></pre></td></tr></table></figure>
+<p>Extraindo esse arquivo ele retorna a seguinte imagem, que visivelmente é a flag porém está corrompida:<br><img src="blue.png" alt="alt text"></p>
+<p>Novamente analisando o arquivo gerado, foi possível que os logs das intruções bluetooth estavam no meio do arquivo. Então chegou a hora de colocar a mão na massa, criar um script que deveria identificar e remover tudo que não fosse parte da imagem, para conseguir visualizar o conteúdo completo.</p>
+<p>Resolvi fazer o script em node que é a linguagem que mais tenho familiaridade (indo em contramão ao python). E o que ele deveria fazer?</p>
+<ol>
+<li>Identificar o inicio da imagem;</li>
+<li>Identificar o fim da imagem;</li>
+<li>Separar o conteúdo;</li>
+</ol>
+<p>Esses três primeiros passos foram feitos pois usei o pcap inteiro como input e não apenas a imagem extraida com binwalk, a segunda parte deveria:</p>
+<ol>
+<li>Identificar o inicio da operação bluetooth;</li>
+<li>Identificar o fim da operação bluetooth;</li>
+<li>Remover os bytes desse intervalo;</li>
+<li>Repetir esses passos até o fim do arquivo.</li>
+</ol>
+<p>O notepad abaixo mostra o código funcional:</p>
 
 
+                <hr>
 
-<!-- Pager -->
+                
 
-<ul class="pager">
-    
-    
-</ul>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/07/13/Emulador-CHIP-8-em-JavaScript-do-zero/" data-toggle="tooltip" data-placement="top" title="Emulador CHIP-8 em JavaScript do zero | Parte 1">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
 
             </div>
-            <!-- Sidebar Container -->
+
             <div class="
     col-lg-3 col-lg-offset-0
     col-md-3 col-md-offset-0
@@ -267,10 +279,74 @@ Desde que tive meu primeiro computado......
     
 </div>
 
-
+    <!-- Side Catalog Container -->
         
+
+    <!-- Sidebar Container -->
+        </div>
     </div>
-</div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_config = function () {
+        this.page.url = document.location.href;
+        this.page.identifier = "brunoventura.github.io/2016/09/12/Writeup-ASIS-Sky-Blue/";
+        this.page.title = "Write-up | ASIS2016 Finals | Forensics - Sky Blue";
+    };
+
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//brunoventura.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
