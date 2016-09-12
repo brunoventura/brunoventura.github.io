@@ -48,6 +48,9 @@
 .sidebar-container .short-about .list-inline > li {
   padding-left: 0px;
 }
+.sidebar-container .short-about .description a {
+  color: #0085a1 !important;
+}
 body {
   /* Hux learn from
      *     TypeIsBeautiful,
@@ -88,9 +91,6 @@ a:focus {
   color: #0085a1;
 }
 a img:hover,
-a img:focus {
-  cursor: zoom-in;
-}
 article {
   overflow-x: hidden;
 }

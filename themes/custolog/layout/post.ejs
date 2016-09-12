@@ -25,7 +25,7 @@ layout: layout
                     <h1><%= page.title %></h1>
                     <h2 class="subheading"><%= page.subtitle || "" %></h2>
                     <span class="meta">
-                        Posted by <%- page.author || config.author %> on
+                        Posted by <a href="<%= config.root %>about/"><%- page.author || config.author %></a> on
                         <%= page.date.format(config.date_format) %>
                     </span>
                 </div>
@@ -41,10 +41,11 @@ layout: layout
 
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
                 post-container">
-
 
                 <%- page.content %>
 
@@ -109,6 +110,8 @@ layout: layout
                 <% } %>
 
             </div>
+
+            <%- partial('_partial/shortbio') %>
     <!-- Side Catalog Container -->
         <% if (page.catalog) { %>
             <div class="
@@ -127,38 +130,6 @@ layout: layout
         <% } %>
 
     <!-- Sidebar Container -->
-
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-                <!-- Featured Tags -->
-                <% if(config['featured-tags']) { %>
-                <section>
-                    <!-- no hr -->
-                    <h5><a href="<%= config.root %>tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                       <% page.tags.forEach(function(tag){ %>
-                          <a class="tag" href="<%= config.root %>tags/#<%= tag.name %>" title="<%= tag.name %>"><%= tag.name %></a>
-                        <% }) %>
-                    </div>
-                </section>
-                <% }%>
-
-                <!-- Friends Blog -->
-                <% if(config.friends) { %>
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-
-                    <% config.friends.forEach(function(friend){ %>
-                        <li><a href="<%= friend.href %>" target="_blank"><%= friend.title %></a></li>
-                    <% }); %>
-                </ul>
-                <% }%>
-            </div>
-
         </div>
     </div>
 </article>
@@ -187,15 +158,19 @@ layout: layout
 <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = "<%= config['disqus_username'] %>";
-    var disqus_identifier = "<%= page.permalink %>";
-    var disqus_url = "<%= page.permalink %>";
-    var disqus_developer = 1;
+    var disqus_config = function () {
+        this.page.url = document.location.href;
+        this.page.identifier = "<%= page.permalink %>";
+        this.page.title = "<%= page.title %>";
+    };
 
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//<%= config['disqus_username'] %>.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
 </script>
 <!-- disqus 公共JS代码 end -->
@@ -216,7 +191,7 @@ layout: layout
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
         anchors.options = {
           visible: 'always',
           placement: 'right',

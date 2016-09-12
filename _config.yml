@@ -2,13 +2,22 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+#Custom
+disqus_username: brunoventura
+anchorjs: true
+ga_track_id: UA-34928308-2
+ga_domain: auto
+
 # Site
 title: Bruno Ventura
-subtitle:
-description:
+subtitle: Fullstack Dev @ Chaordic
+description: A passionate developer interested in Javascript, Security, Backend and DevOps.
+keywords: software development
+SEOTitle: Bruno Ventura Blog
 author: Bruno Ventura
 language:
 timezone:
+header-img: img/mainbg.jpg
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: brunoventura.github.io
@@ -16,8 +25,7 @@ root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 sidebar-avatar: img/avatar.jpg
-sidebar-about-description: Fullstack Developer @ Chaordic
-disqus_username: bpventura
+sidebar-about-description: A passionate developer interested in Javascript, Security, Backend and DevOps. Cofounder of <a href="https://www.ctf-br.org">CTF-BR</a> group.
 
 # Directory
 source_dir: source
